@@ -111,8 +111,7 @@ pos_sentence_list = pos(word_sentence_list)
 entity_sentence_list = ner(word_sentence_list, pos_sentence_list)
 ```
 
-### 5. Release model
-Resources held by each model will only be released after pointers to that model are gone.
+### 5. (Optional) Release memory
 ```python
 del ws
 del pos
