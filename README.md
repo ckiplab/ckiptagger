@@ -1,9 +1,9 @@
 # ckipneutools
 
-This open-source library implements:
-* Neural CKIP-style Chinese word segmentation
-* Neural CKIP-style Chinese part-of-speech tagging
-* Neural CKIP-style Chinese named entity recognition
+This open-source library implement neural CKIP-style Chinese NLP tools
+* (WS) word segmentation
+* (POS) Part-of-speech tagging
+* (NER) Named entity recognition
 
 Neu tools demo: [neu](http://ckip.iis.sinica.edu.tw/service/ckipneutools)<br />
 Old tools demo: [old](http://ckip.iis.sinica.edu.tw/service/corenlp)
@@ -34,7 +34,7 @@ pip install ckipneutools[tf,gdown]
 
 ckipneutools is a Python library hosted on PyPI. Requirements:
 - python>=3.6
-- tensorflow / tensorflow-gpu (one-of-them)
+- tensorflow / tensorflow-gpu (one of them)
 - gdown (optional, for downloading model files from google drive)
 
 (Minimum installation) If you have set up tensorflow, and would like to download model files by your self.
@@ -52,11 +52,14 @@ pip install ckipneutools[tfgpu,gdown]
 See the complete demo script: demo.py<br />
 Or the [web demo](http://ckip.iis.sinica.edu.tw/service/ckipneutools)
 
-### 1. Download model files
+### 1. Download model files (2GB)
 
-The model files are available on [google drive](https://drive.google.com/drive/folders/15BDjL2IaX3eYdFVzT422VwCb743Hrbi3). If you have gdown installed, you can download and extract to desired path by the included API.
+The model files are available on google drive.
+- [mirror-ckip](https://drive.google.com/drive/folders/105IKCb88evUyLKlLondvDBoh7Dy_I1tm)
+- [mirror-jacobvsdanniel](https://drive.google.com/drive/folders/15BDjL2IaX3eYdFVzT422VwCb743Hrbi3)
+If you have gdown installed, you can download and extract to desired path by the included API.
 ```python
-ckipneutools.data_utils.download_data("./")
+ckipneutools.data_utils.download_data("./") # Downloads to ./data.zip and extracts to ./data/
 ```
 
 ### 2. Load model
@@ -78,7 +81,7 @@ word_to_weight = {
     "來亂的": "啦",
     "緯來體育台": 1,
 }
-dictionary = construct_dictionary(word_to_weight)
+dictionary = ckipneutools.construct_dictionary(word_to_weight)
 print(dictionary)
 ```
 ```
