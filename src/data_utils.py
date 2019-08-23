@@ -5,7 +5,7 @@ import zipfile
 import gdown
 
 def download_data(path):
-    file_id = "16jCrS27EVCOFYWWx9Z0ByFG_Y-Df7CiJ"
+    file_id = "1efHsY16pxK0lBD2gYCgCTnv1Swstq771"
     url = f"https://drive.google.com/uc?id={file_id}"
     data_zip = os.path.join(path, "data.zip")
     gdown.download(url, data_zip, quiet=False)
