@@ -1,9 +1,9 @@
 # ckipneutools
 
-This open-source library implement neural CKIP-style Chinese NLP tools
+This open-source library implement neural CKIP-style Chinese NLP tools.
 * (WS) word segmentation
-* (POS) Part-of-speech tagging
-* (NER) Named entity recognition
+* (POS) part-of-speech tagging
+* (NER) named entity recognition
 
 Neu tools demo: [neu](http://ckip.iis.sinica.edu.tw/service/ckipneutools)<br />
 Old tools demo: [old](http://ckip.iis.sinica.edu.tw/service/corenlp)
