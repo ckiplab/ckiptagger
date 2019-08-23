@@ -21,7 +21,7 @@ Ease-of-use Neu vs. Old
 - Support indefinitely long sentences
 
 Features Neu
-- Do not rely on word list, word frequency statisics, PoS frequency statisics
+- Do not rely on word list, word frequency statisics, POS frequency statisics
 - Support user-defined recommended-word list
 - Support user-defined must-word list
 
