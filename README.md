@@ -1,4 +1,4 @@
-# ckipneutools
+# CkipNeuTools
 
 This open-source library implement neural CKIP-style Chinese NLP tools.
 * (WS) word segmentation
