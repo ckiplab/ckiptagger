@@ -54,8 +54,6 @@ Or the [web demo](http://ckip.iis.sinica.edu.tw/service/ckipneutools)
 
 ### 1. Download model files
 
-### 1. Download model files
-
 The model files are available on google drive.
 - [mirror-ckip](https://drive.google.com/drive/folders/105IKCb88evUyLKlLondvDBoh7Dy_I1tm)
 - [mirror-jacobvsdanniel](https://drive.google.com/drive/folders/15BDjL2IaX3eYdFVzT422VwCb743Hrbi3)
