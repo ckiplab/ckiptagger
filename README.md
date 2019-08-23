@@ -1,6 +1,6 @@
 # CkipNeuTools
 
-This open-source library implement neural CKIP-style Chinese NLP tools.
+This open-source library implements neural CKIP-style Chinese NLP tools.
 * (WS) word segmentation
 * (POS) part-of-speech tagging
 * (NER) named entity recognition
