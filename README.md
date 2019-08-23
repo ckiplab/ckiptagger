@@ -5,23 +5,22 @@ This open-source library implements:
 * Neural CKIP-style Chinese part-of-speech tagging
 * Neural CKIP-style Chinese named entity recognition
 
-## Compare to old tools
 Neu tools demo: [neu](http://ckip.iis.sinica.edu.tw/service/ckipneutools)<br />
 Old tools demo: [old](http://ckip.iis.sinica.edu.tw/service/corenlp)
 
-Performance
+Performance Neu vs. Old
 - WS: +1.4% absolute F1 on ASBC 4.0 test split
 - POS: +4.0% absolute accuracy on ASBC 4.0 test split
 - NER: +2.2% absolute F1 on OntoNotes 5.0 Chinese test split
 
-Ease-of-use
+Ease-of-use Neu vs. Old
 - Do not auto delete/change/add characters
 - Keep spaces as they are
 - Keep full/half-width characters as they are
 - Do not auto insert newlines
 - Support indefinitely long sentences
 
-Features
+Features Neu
 - Do not rely on word list, word frequency statisics, PoS frequency statisics
 - Support user-defined recommended-word list
 - Support user-defined must-word list
