@@ -2,7 +2,7 @@ import os
 import sys
 import zipfile
 
-def downlaod_data_gdrive(path):
+def downlaod_data_gdown(path):
     import gdown
     
     file_id = "1efHsY16pxK0lBD2gYCgCTnv1Swstq771"
@@ -14,9 +14,9 @@ def downlaod_data_gdrive(path):
         zip_ref.extractall(path)
     return
     
-download_data = downlaod_data_gdrive
+download_data = downlaod_data_gdown
     
-def download_data_ckip(path):
+def download_data_url(path):
     import urllib.request
     
     url = "http://ckip.iis.sinica.edu.tw/data/ckipneutools/data.zip"
@@ -29,8 +29,8 @@ def download_data_ckip(path):
     
 def main():
     download_data("./m1")
-    downlaod_data_gdrive("./m2")
-    download_data_ckip("./m3")
+    downlaod_data_gdown("./m2")
+    download_data_url("./m3")
     return
     
 if __name__ == "__main__":
