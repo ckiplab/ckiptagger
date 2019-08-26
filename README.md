@@ -7,7 +7,7 @@ This open-source library implements neural CKIP-style Chinese NLP tools.
 
 Related demo sites
 - [CkipTagger](http://ckip.iis.sinica.edu.tw/service/ckiptagger)
-- [Classic CKIPWS](http://ckipsvr.iis.sinica.edu.tw)
+- [CKIPWS (classic)](http://ckipsvr.iis.sinica.edu.tw)
 
 Features
 - +1.4%/+4.0%/+2.2% performance vs. classic CKIPWS(/POS/NER) on ASBC4.0/OntoNotes5.0
@@ -39,9 +39,7 @@ pip install -U ckiptagger[tfgpu,gdown]
 
 ## Usage
 
-- Complete demo script: demo.py
-- [web demo](http://ckip.iis.sinica.edu.tw/service/ckiptagger)
-- Below sections assume:
+Complete demo script: demo.py. The following sections assume:
 ```python
 from ckiptagger import data_utils, construct_dictionary, WS, POS, NER
 ```
