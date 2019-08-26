@@ -1,6 +1,13 @@
 import os
 import sys
 
+# Suppress as many warnings as possible
+# os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
+# from tensorflow.python.util import deprecation
+# deprecation._PRINT_DEPRECATION_WARNINGS = False
+import tensorflow as tf
+tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
+
 from ckipneutools import data_utils, construct_dictionary, WS, POS, NER
 
 def main():
