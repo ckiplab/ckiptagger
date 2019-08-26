@@ -1,4 +1,4 @@
-# CkipNeuTools
+# CkipTagger
 
 This open-source library implements neural CKIP-style Chinese NLP tools.
 * (WS) word segmentation
@@ -6,8 +6,8 @@ This open-source library implements neural CKIP-style Chinese NLP tools.
 * (NER) named entity recognition
 
 Related demo sites
-- [CkipNeuTools](http://ckip.iis.sinica.edu.tw/service/ckipneutools/)
-- [Classic CKIPWS](http://ckipsvr.iis.sinica.edu.tw/)
+- [CkipTagger](http://ckip.iis.sinica.edu.tw/service/ckiptagger)
+- [Classic CKIPWS](http://ckipsvr.iis.sinica.edu.tw)
 
 Features
 - +1.4%/+4.0%/+2.2% performance vs. classic CKIPWS(/POS/NER) on ASBC4.0/OntoNotes5.0
@@ -19,41 +19,45 @@ Features
 
 tl;dr.
 ```
-pip install ckipneutools[tf,gdown]
+pip install -U ckiptagger[tf,gdown]
 ```
 
-ckipneutools is a Python library hosted on PyPI. Requirements:
+CkipTagger is a Python library hosted on PyPI. Requirements:
 - python>=3.6
 - tensorflow / tensorflow-gpu (one of them)
 - gdown (optional, for downloading model files from google drive)
 
 (Minimum installation) If you have set up tensorflow, and would like to download model files by your self.
 ```
-pip install ckipneutools
+pip install -U ckiptagger
 ```
 
 (Complete installation) If you have just set up a clean virtual environment, and want everything, including GPU support.
 ```
-pip install ckipneutools[tfgpu,gdown]
+pip install -U ckiptagger[tfgpu,gdown]
 ```
 
 ## Usage
 
-See the complete demo script: demo.py<br />
-Or the [web demo](http://ckip.iis.sinica.edu.tw/service/ckipneutools)
+- Complete demo script: demo.py
+- [web demo](http://ckip.iis.sinica.edu.tw/service/ckiptagger)
+- Below sections assume:
+```python
+from ckiptagger import data_utils, construct_dictionary, WS, POS, NER
+```
 
 ### 1. Download model files
 
 The model files are available on several mirror sites.
-- [iis-ckip](http://ckip.iis.sinica.edu.tw/data/ckipneutools/data.zip)
+- [iis-ckip](http://ckip.iis.sinica.edu.tw/data/ckiptagger/data.zip)
 - [gdrive-ckip](https://drive.google.com/drive/folders/105IKCb88evUyLKlLondvDBoh7Dy_I1tm)
 - [gdrive-jacobvsdanniel](https://drive.google.com/drive/folders/15BDjL2IaX3eYdFVzT422VwCb743Hrbi3)
 
 You can download and extract to the desired path by one of the included API.
 ```python
 # Downloads to ./data.zip (2GB) and extracts to ./data/
-# ckipneutools.data_utils.downlaod_data_url("./") # iis-ckip
-ckipneutools.data_utils.downlaod_data_gdown("./") # gdrive-ckip
+# data_utils.downlaod_data_url("./") # iis-ckip
+data_utils.downlaod_data_gdown("./") # gdrive-ckip
 ```
 - ./data/model_ner/pos_list.txt -> POS tag list, see [Technical Report no. 93-05](http://ckip.iis.sinica.edu.tw/CKIP/tr/9305_2013%20revision.pdf)
 
@@ -61,9 +65,9 @@ ckipneutools.data_utils.downlaod_data_gdown("./") # gdrive-ckip
 
 ### 2. Load model
 ```python
-ws = ckipneutools.WS("./data")
-pos = ckipneutools.POS("./data")
-ner = ckipneutools.NER("./data")
+ws = WS("./data")
+pos = POS("./data")
+ner = NER("./data")
 ```
 
 ### 3. (Optional) Create dictionary
@@ -78,7 +82,7 @@ word_to_weight = {
     "來亂的": "啦",
     "緯來體育台": 1,
 }
-dictionary = ckipneutools.construct_dictionary(word_to_weight)
+dictionary = construct_dictionary(word_to_weight)
 print(dictionary)
 ```
 ```
