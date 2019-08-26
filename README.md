@@ -44,13 +44,16 @@ Or the [web demo](http://ckip.iis.sinica.edu.tw/service/ckipneutools)
 
 ### 1. Download model files
 
-The model files are available on google drive.
-- [mirror-ckip](https://drive.google.com/drive/folders/105IKCb88evUyLKlLondvDBoh7Dy_I1tm)
-- [mirror-jacobvsdanniel](https://drive.google.com/drive/folders/15BDjL2IaX3eYdFVzT422VwCb743Hrbi3)
+The model files are available on several mirror sites.
+- [iis-ckip](http://ckip.iis.sinica.edu.tw/data/ckipneutools/data.zip)
+- [gdrive-ckip](https://drive.google.com/drive/folders/105IKCb88evUyLKlLondvDBoh7Dy_I1tm)
+- [gdrive-jacobvsdanniel](https://drive.google.com/drive/folders/15BDjL2IaX3eYdFVzT422VwCb743Hrbi3)
 
-If you have gdown installed, you can download and extract to desired path by the included API.
+You can download and extract to the desired path by one of the included API.
 ```python
-ckipneutools.data_utils.download_data("./") # Downloads to ./data.zip (2GB) and extracts to ./data/
+# Downloads to ./data.zip (2GB) and extracts to ./data/
+# ckipneutools.data_utils.downlaod_data_iis("./") # iis-ckip
+ckipneutools.data_utils.downlaod_data_gdrive("./") # gdrive-ckip
 ```
 - ./data/model_ner/pos_list.txt -> POS tag list, see [Technical Report no. 93-05](http://ckip.iis.sinica.edu.tw/CKIP/tr/9305_2013%20revision.pdf)
 
