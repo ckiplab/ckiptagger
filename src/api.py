@@ -5,10 +5,11 @@ import unicodedata
 
 import numpy as np
 import tensorflow as tf
+tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
-from ckipneutools import model_ws
-from ckipneutools import model_pos
-from ckipneutools import model_ner
+from ckiptagger import model_ws
+from ckiptagger import model_pos
+from ckiptagger import model_ner
 
 os.environ["CUDA_VISIBLE_DEVICES"] = ""
 _whitespace_pattern = re.compile("[\s]+")

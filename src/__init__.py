@@ -1,5 +1,5 @@
-from ckipneutools.api import construct_dictionary
-from ckipneutools.api import WS
-from ckipneutools.api import POS
-from ckipneutools.api import NER
-import ckipneutools.data_utils
+from ckiptagger.api import construct_dictionary
+from ckiptagger.api import WS
+from ckiptagger.api import POS
+from ckiptagger.api import NER
+import ckiptagger.data_utils
