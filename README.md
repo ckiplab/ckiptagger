@@ -58,8 +58,8 @@ You can download and extract to the desired path by one of the included API.
 data_utils.downlaod_data_gdown("./") # gdrive-ckip
 ```
 - ./data/model_ner/pos_list.txt -> POS tag list, see [Technical Report no. 93-05](http://ckip.iis.sinica.edu.tw/CKIP/tr/9305_2013%20revision.pdf)
-
 - ./data/model_ner/label_list.txt -> Entity type list, see [OntoNotes Release 5.0](https://catalog.ldc.upenn.edu/docs/LDC2013T19/OntoNotes-Release-5.0.pdf) p.21,22
+- ./data/embedding_* -> character/word embeddings
 
 ### 2. Load model
 ```python
