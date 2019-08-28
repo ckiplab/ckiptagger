@@ -1,4 +1,5 @@
 # CkipTagger
+Also: [中文 README](https://github.com/ckiplab/ckiptagger/wiki/Chinese-README)
 
 This open-source library implements neural CKIP-style Chinese NLP tools.
 * (WS) word segmentation
