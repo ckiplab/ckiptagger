@@ -181,6 +181,12 @@ for i, sentence in enumerate(sentence_list):
 
 ```
 
+## Model Details
+
+For model details, see:
+
+Peng-Hsuan Li, Tsu-Jui Fu, and Wei-Yun Ma. 2019. [Remedying BiLSTM-CNN Deficiency in Modeling Cross-Context for NER](https://arxiv.org/abs/1908.11046). arXiv preprint arXiv:1908.11046.
+
 ## LICENSE
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />
