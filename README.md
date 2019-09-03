@@ -1,6 +1,32 @@
 # CkipTagger
 Also: [中文 README](https://github.com/ckiplab/ckiptagger/wiki/Chinese-README)
 
+#### GitHub
+
+https://github.com/ckiplab/ckiptagger
+
+[![GitHub release](https://img.shields.io/github/v/release/ckiplab/ckiptagger.svg?maxAge=3600)](https://github.com/ckiplab/ckiptagger/releases)
+[![GitHub release date](https://img.shields.io/github/release-date/ckiplab/ckiptagger.svg?maxAge=3600)](https://github.com/ckiplab/ckiptagger/releases)
+[![GitHub issues](https://img.shields.io/github/issues/ckiplab/ckiptagger.svg?maxAge=3600)](https://github.com/ckiplab/ckiptagger/issues)
+
+#### PyPI
+
+https://pypi.org/project/ckiptagger
+
+[![PyPI version](https://img.shields.io/pypi/v/ckiptagger.svg?maxAge=3600)](https://pypi.org/project/ckiptagger)
+[![PyPI license](https://img.shields.io/pypi/l/ckiptagger.svg?maxAge=3600)](https://github.com/ckiplab/ckiptagger/blob/master/LICENSE)
+[![PyPI python](https://img.shields.io/pypi/pyversions/ckiptagger.svg?maxAge=3600)](https://pypi.org/project/ckiptagger)
+
+#### Documentation
+
+https://github.com/ckiplab/ckiptagger/wiki
+
+#### Author
+
+Peng-Hsuan Li <<https://jacobvsdanniel.github.io>>
+
+## Introduction
+
 This open-source library implements neural CKIP-style Chinese NLP tools.
 * (WS) word segmentation
 * (POS) part-of-speech tagging
@@ -25,7 +51,7 @@ pip install -U ckiptagger[tf,gdown]
 ```
 
 CkipTagger is a Python library hosted on PyPI. Requirements:
-- python>=3.6
+- python>=3.5 (>=3.6 for f-string in demo.py)
 - tensorflow / tensorflow-gpu (one of them)
 - gdown (optional, for downloading model files from google drive)
 
