@@ -55,7 +55,7 @@ CkipTagger is a Python library hosted on PyPI. Requirements:
 - tensorflow / tensorflow-gpu (one of them)
 - gdown (optional, for downloading model files from google drive)
 
-(Minimum installation) If you have set up tensorflow, and would like to download model files by your self.
+(Minimum installation) If you have set up tensorflow, and would like to download model files by yourself.
 ```
 pip install -U ckiptagger
 ```
