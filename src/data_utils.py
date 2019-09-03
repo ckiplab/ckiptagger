@@ -2,7 +2,7 @@ import os
 import sys
 import zipfile
 
-def downlaod_data_gdown(path):
+def download_data_gdown(path):
     import gdown
     
     file_id = "1efHsY16pxK0lBD2gYCgCTnv1Swstq771"
@@ -14,7 +14,7 @@ def downlaod_data_gdown(path):
         zip_ref.extractall(path)
     return
     
-download_data = downlaod_data_gdown
+download_data = download_data_gdown
     
 def download_data_url(path):
     import urllib.request
@@ -29,7 +29,7 @@ def download_data_url(path):
     
 def main():
     download_data("./m1")
-    downlaod_data_gdown("./m2")
+    download_data_gdown("./m2")
     download_data_url("./m3")
     return
     
