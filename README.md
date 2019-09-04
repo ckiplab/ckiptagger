@@ -36,8 +36,8 @@ This open-source library implements neural CKIP-style Chinese NLP tools.
 
 Related demo sites
 - [CkipTagger](http://ckip.iis.sinica.edu.tw/service/ckiptagger)
-- [CKIPWS (classic)](http://ckipsvr.iis.sinica.edu.tw)
 - [CKIP CoreNLP](http://ckip.iis.sinica.edu.tw/service/corenlp)
+- [CKIPWS (classic)](http://ckipsvr.iis.sinica.edu.tw)
 
 Features
 - Performance improvements
