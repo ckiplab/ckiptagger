@@ -38,7 +38,7 @@ Related demo sites
 - [CKIP CoreNLP](http://ckip.iis.sinica.edu.tw/service/corenlp)
 
 Features
-- +1.4%/+4.0%/+2.2% performance vs. classic CKIPWS(/POS/NER) on ASBC4.0/OntoNotes5.0
+- +1.4%/+4.0%/+2.2% performance vs. classic CKIPWS(/POS/NER) on ASBC4.0/OntoNotes5.0 ([details](https://github.com/ckiplab/ckiptagger/wiki/Performance))
 - Do not auto delete/change/add characters
 - Support indefinitely long sentences
 - Support user-defined recommended-word list and must-word list
