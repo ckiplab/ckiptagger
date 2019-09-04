@@ -61,7 +61,7 @@ pip install -U ckiptagger[tf,gdown]
 ```
 
 CkipTagger is a Python library hosted on PyPI. Requirements:
-- python>=3.5 (>=3.6 for f-string in demo.py)
+- python>=3.6
 - tensorflow / tensorflow-gpu (one of them)
 - gdown (optional, for downloading model files from google drive)
 
