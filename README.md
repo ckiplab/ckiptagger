@@ -21,9 +21,11 @@ https://pypi.org/project/ckiptagger
 
 https://github.com/ckiplab/ckiptagger/wiki
 
-#### Author
+#### Author / Contacts
 
-Peng-Hsuan Li <<https://jacobvsdanniel.github.io>>
+Peng-Hsuan Li <<https://jacobvsdanniel.github.io>><br />
+Primary Contact <<ckiptagger@iis.sinica.edu.tw>><br />
+Commercial License <<ckiptagger_cm@iis.sinica.edu.tw>>
 
 ## Introduction
 
@@ -38,10 +40,18 @@ Related demo sites
 - [CKIP CoreNLP](http://ckip.iis.sinica.edu.tw/service/corenlp)
 
 Features
-- +1.4%/+4.0%/+2.2% performance vs. classic CKIPWS(/POS/NER) on ASBC4.0/OntoNotes5.0 ([details](https://github.com/ckiplab/ckiptagger/wiki/Performance))
+- Performance improvements
 - Do not auto delete/change/add characters
 - Support indefinitely long sentences
 - Support user-defined recommended-word list and must-word list
+
+ASBC 4.0 Test Split (50,000 sentences)
+
+| Tool | (WS) prec | (WS) rec | (WS) f1 | (POS) acc |
+|:-:|:-:|:-:|:-:|:-:|
+| CkipTagger       | 97.49% | 97.17% | 97.33% | 94.59% |
+| CKIPWS (classic) | 95.85% | 95.96% | 95.91% | 90.62% |
+| Jieba-zh_TW      | 90.51% | 89.10% | 89.80% | -- |
 
 ## Installation
 
@@ -217,4 +227,6 @@ Peng-Hsuan Li, Tsu-Jui Fu, and Wei-Yun Ma. 2019. [Remedying BiLSTM-CNN Deficienc
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />
 Copyright 2019 CKIP under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+
+For commercial license, please contact <<ckiptagger_cm@iis.sinica.edu.tw>>
 
