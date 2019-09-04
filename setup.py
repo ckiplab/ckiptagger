@@ -5,14 +5,14 @@ with open("README.md", "r") as fh:
     
 setuptools.setup(
     name = "ckiptagger",
-    version = "0.0.13",
+    version = "0.0.14",
     author = "Peng-Hsuan Li",
     author_email = "jacobvsdanniel@gmail.com",
     description = "Neural implementation of CKIP WS, POS, NER tools",
     long_description = long_description,
     long_description_content_type = "text/markdown",
     url = "https://github.com/ckiplab/ckiptagger",
-    python_requires = ">=3.5",
+    python_requires = ">=3.6",
     packages = ["ckiptagger"],
     package_dir = {"ckiptagger": "src"},
     extras_require = {
