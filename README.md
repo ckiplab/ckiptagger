@@ -226,7 +226,7 @@ Peng-Hsuan Li, Tsu-Jui Fu, and Wei-Yun Ma. 2019. [Remedying BiLSTM-CNN Deficienc
 ## LICENSE
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />
-Copyright 2019 CKIP under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+Copyright 2019 [CKIP](https://ckip.iis.sinica.edu.tw/) under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
 For commercial license, please contact <<ckiptagger_cm@iis.sinica.edu.tw>>
 
