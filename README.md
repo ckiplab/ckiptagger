@@ -25,7 +25,6 @@ https://github.com/ckiplab/ckiptagger/wiki
 
 Peng-Hsuan Li <<https://jacobvsdanniel.github.io>><br />
 Primary Contact <<ckiptagger@iis.sinica.edu.tw>><br />
-Commercial License <<ckiptagger_cm@iis.sinica.edu.tw>>
 
 ## Introduction
 
