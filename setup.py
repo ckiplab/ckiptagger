@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
     
 setuptools.setup(
     name = "ckiptagger",
-    version = "0.0.14",
+    version = "0.0.16",
     author = "Peng-Hsuan Li",
     author_email = "jacobvsdanniel@gmail.com",
     description = "Neural implementation of CKIP WS, POS, NER tools",
@@ -20,10 +20,9 @@ setuptools.setup(
         "tfgpu": ["tensorflow-gpu"],
         "gdown": ["gdown"],
     },
-    licence = "CC BY-NC-SA 4.0",
     classifiers = [
         "Programming Language :: Python :: 3",
-        "License :: Free for non-commercial use",
+        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
         "Operating System :: OS Independent",
     ],
 )
