@@ -228,5 +228,5 @@ Copyright (c) 2019 [CKIP Lab](https://ckip.iis.sinica.edu.tw/).
 
 This Work is licensed under the GNU General Public License v3.0 without any warranties. The license text in full can be getting access at the file named COPYING-GPL-3.0. Any person obtaining a copy of this Work and associated documentation files is granted the rights to use, copy, modify, merge, publish, and distribute the Work for any purpose. However if any work is based upon this Work and hence constitutes a Derivative Work, the GPL-3.0 license requires distributions of the Work and the Derivative Work to remain under the same license or a similar license with the Source Code provision obligation.
 
-Primary Contact: <<ckiptagger@iis.sinica.edu.tw>><br />
-For commercial license without the Source Code conveying liability, please contact <<ckiptagger_cm@iis.sinica.edu.tw>>
+For commercial license without the Source Code conveying liability, please contact <<ckiptagger_cm@iis.sinica.edu.tw>><br />
+For other questions, please contact <<ckiptagger@iis.sinica.edu.tw>>
