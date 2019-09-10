@@ -107,7 +107,7 @@ ner = NER("./data")
 
 ### 3. (Optional) Create dictionary
 
-You can supply words for WS speicial consideration, including their relative weights.
+You can supply words for WS special consideration, including their relative weights.
 ```python
 word_to_weight = {
     "土地公": 1,
