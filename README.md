@@ -100,6 +100,11 @@ data_utils.download_data_gdown("./") # gdrive-ckip
 
 ### 2. Load model
 ```python
+# To use GPU:
+#    1. Install tensorflow-gpu (see Installation)
+#    2. Set CUDA_VISIBLE_DEVICES environment variable, e.g. os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+#    3. Set disable_cuda=False, e.g. ws = WS("./data", disable_cuda=False)
+# To use CPU:
 ws = WS("./data")
 pos = POS("./data")
 ner = NER("./data")
@@ -107,7 +112,7 @@ ner = NER("./data")
 
 ### 3. (Optional) Create dictionary
 
-You can supply words for WS speicial consideration, including their relative weights.
+You can supply words for WS special consideration, including their relative weights.
 ```python
 word_to_weight = {
     "土地公": 1,
