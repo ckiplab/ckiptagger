@@ -21,10 +21,10 @@ https://pypi.org/project/ckiptagger
 
 https://github.com/ckiplab/ckiptagger/wiki
 
-#### Author / Contacts
+#### Author / Maintainers
 
-Peng-Hsuan Li <<https://jacobvsdanniel.github.io>><br />
-Primary Contact <<ckiptagger@iis.sinica.edu.tw>><br />
+[Peng-Hsuan Li](https://jacobvsdanniel.github.io)@[CKIP](http://ckip.iis.sinica.edu.tw) (author/maintainer)<br />
+[Wei-Yun Ma](https://www.iis.sinica.edu.tw/pages/ma)@[CKIP](http://ckip.iis.sinica.edu.tw) (maintainer)<br />
 
 ## Introduction
 
@@ -61,7 +61,7 @@ pip install -U ckiptagger[tf,gdown]
 
 CkipTagger is a Python library hosted on PyPI. Requirements:
 - python>=3.6
-- tensorflow / tensorflow-gpu (one of them)
+- tensorflow>=1.13.1,<2 / tensorflow-gpu>=1.13.1,<2 (one of them)
 - gdown (optional, for downloading model files from google drive)
 
 (Minimum installation) If you have set up tensorflow, and would like to download model files by yourself.
@@ -100,6 +100,11 @@ data_utils.download_data_gdown("./") # gdrive-ckip
 
 ### 2. Load model
 ```python
+# To use GPU:
+#    1. Install tensorflow-gpu (see Installation)
+#    2. Set CUDA_VISIBLE_DEVICES environment variable, e.g. os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+#    3. Set disable_cuda=False, e.g. ws = WS("./data", disable_cuda=False)
+# To use CPU:
 ws = WS("./data")
 pos = POS("./data")
 ner = NER("./data")
@@ -107,7 +112,7 @@ ner = NER("./data")
 
 ### 3. (Optional) Create dictionary
 
-You can supply words for WS speicial consideration, including their relative weights.
+You can supply words for WS special consideration, including their relative weights.
 ```python
 word_to_weight = {
     "土地公": 1,
@@ -228,4 +233,5 @@ Copyright (c) 2019 [CKIP Lab](https://ckip.iis.sinica.edu.tw/).
 
 This Work is licensed under the GNU General Public License v3.0 without any warranties. The license text in full can be getting access at the file named COPYING-GPL-3.0. Any person obtaining a copy of this Work and associated documentation files is granted the rights to use, copy, modify, merge, publish, and distribute the Work for any purpose. However if any work is based upon this Work and hence constitutes a Derivative Work, the GPL-3.0 license requires distributions of the Work and the Derivative Work to remain under the same license or a similar license with the Source Code provision obligation.
 
-For commercial license without the Source Code conveying liability, please contact <<ckiptagger_cm@iis.sinica.edu.tw>>
+For commercial license without the Source Code conveying liability, please contact <<ckiptagger_cm@iis.sinica.edu.tw>><br />
+For other questions, please contact <<ckiptagger@iis.sinica.edu.tw>>

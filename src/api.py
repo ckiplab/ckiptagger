@@ -11,7 +11,6 @@ from ckiptagger import model_ws
 from ckiptagger import model_pos
 from ckiptagger import model_ner
 
-os.environ["CUDA_VISIBLE_DEVICES"] = ""
 _whitespace_pattern = re.compile("[\s]+")
 
 def construct_dictionary(word_to_weight):
@@ -33,7 +32,7 @@ def construct_dictionary(word_to_weight):
     return length_word_weight
     
 class WS:
-    def __init__(self, data_dir):
+    def __init__(self, data_dir, disable_cuda=True):
         config = model_ws.Config()
         config.name = "model_asbc_Att-0_BiLSTM-cross-2-500_batch128-run1"
         config.attention_heads = 0
@@ -42,12 +41,22 @@ class WS:
         config.hidden_d = 500
         config.w_token_to_vector, config.w_embedding_d = _load_embedding(os.path.join(data_dir, "embedding_character"))
         
+        if disable_cuda:
+            if "CUDA_VISIBLE_DEVICES" in os.environ:
+                env_backup = os.environ["CUDA_VISIBLE_DEVICES"]
+            else:
+                env_backup = None
+            os.environ["CUDA_VISIBLE_DEVICES"] = ""
+            
         with tf.Graph().as_default():
             model = model_ws.Model(config)
             model.sess = tf.Session()
             model.sess.run(tf.global_variables_initializer())
             saver = tf.train.Saver()
             saver.restore(model.sess, os.path.join(data_dir, "model_ws", config.name))
+            
+        if disable_cuda and env_backup:
+            os.environ["CUDA_VISIBLE_DEVICES"] = env_backup
             
         self.model = model
         return
@@ -141,7 +150,7 @@ class WS:
         return word_sentence_list
         
 class POS:
-    def __init__(self, data_dir):
+    def __init__(self, data_dir, disable_cuda=True):
         config = model_pos.Config()
         config.name = "model_asbc_Att-0_BiLSTM-2-500_batch256-run1"
         config.attention_heads = 0
@@ -152,13 +161,23 @@ class POS:
         config.label_list, config.label_to_index = _read_pos_list(os.path.join(data_dir, "model_pos", "label_list.txt"))
         config.output_d = len(config.label_list)
         
+        if disable_cuda:
+            if "CUDA_VISIBLE_DEVICES" in os.environ:
+                env_backup = os.environ["CUDA_VISIBLE_DEVICES"]
+            else:
+                env_backup = None
+            os.environ["CUDA_VISIBLE_DEVICES"] = ""
+            
         with tf.Graph().as_default():
             model = model_pos.Model(config)
             model.sess = tf.Session()
             model.sess.run(tf.global_variables_initializer())
             saver = tf.train.Saver()
             saver.restore(model.sess, os.path.join(data_dir, "model_pos", config.name))
-        
+            
+        if disable_cuda and env_backup:
+            os.environ["CUDA_VISIBLE_DEVICES"] = env_backup
+            
         self.model = model
         return
         
@@ -231,7 +250,7 @@ class POS:
         return pos_sentence_list
         
 class NER:
-    def __init__(self, data_dir):
+    def __init__(self, data_dir, disable_cuda=True):
         config = model_ner.Config()
         config.name = "model_ontochinese_Att-0_BiLSTM-2-500_batch128-run1"
         config.attention_heads = 0
@@ -244,12 +263,22 @@ class NER:
         config.label_list, config.label_to_index = _read_entity_type_list(os.path.join(data_dir, "model_ner", "label_list.txt"))
         config.output_d = len(config.label_list)
         
+        if disable_cuda:
+            if "CUDA_VISIBLE_DEVICES" in os.environ:
+                env_backup = os.environ["CUDA_VISIBLE_DEVICES"]
+            else:
+                env_backup = None
+            os.environ["CUDA_VISIBLE_DEVICES"] = ""
+            
         with tf.Graph().as_default():
             model = model_ner.Model(config)
             model.sess = tf.Session()
             model.sess.run(tf.global_variables_initializer())
             saver = tf.train.Saver()
             saver.restore(model.sess, os.path.join(data_dir, "model_ner", config.name))
+            
+        if disable_cuda and env_backup:
+            os.environ["CUDA_VISIBLE_DEVICES"] = env_backup
             
         self.model = model
         return
