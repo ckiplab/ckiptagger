@@ -388,17 +388,18 @@ def _read_entity_type_list(label_list_file):
     return label_list, label_to_index
     
 def _normalize_sentence(raw_sentence):
-    normal_sentence = unicodedata.normalize("NFKD", raw_sentence)
-    
+    normal_string_list = []
     normal_to_raw_index = []
+    
     for raw_index, raw_string in enumerate(raw_sentence):
         normal_string = unicodedata.normalize("NFKD", raw_string)
-        normal_index = len(normal_to_raw_index)
-        assert normal_string == normal_sentence[normal_index:normal_index+len(normal_string)]
+        normal_string_list.append(normal_string)
         normal_to_raw_index.append(raw_index)
+        
         for _ in normal_string[1:]:
             normal_to_raw_index.append(-1)
             
+    normal_sentence = "".join(normal_string_list)
     return normal_sentence, normal_to_raw_index
     
 def _segment_sentence(sentence, delimiter_set):

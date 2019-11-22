@@ -14,10 +14,15 @@ def main():
     # Download data
     data_utils.download_data("./")
     
-    # Load model
+    # Load model without GPU
     ws = WS("./data")
     pos = POS("./data")
     ner = NER("./data")
+    
+    # Load model with GPU
+    # ws = WS("./data", disable_cuda=False)
+    # pos = POS("./data", disable_cuda=False)
+    # ner = NER("./data", disable_cuda=False)
     
     # Create custom dictionary
     word_to_weight = {
