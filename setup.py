@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf8") as fh:
     
 setuptools.setup(
     name = "ckiptagger",
-    version = "0.1.0",
+    version = "0.1.1",
     author = "Peng-Hsuan Li",
     author_email = "jacobvsdanniel@gmail.com",
     description = "Neural implementation of CKIP WS, POS, NER tools",

@@ -16,11 +16,11 @@ def download_data_gdown(path):
     
 downlaod_data_gdown = download_data_gdown
 download_data = download_data_gdown
-    
+
 def download_data_url(path):
     import urllib.request
     
-    url = "http://ckip.iis.sinica.edu.tw/data/ckiptagger/data.zip"
+    url = "https://ckip.iis.sinica.edu.tw/data/ckiptagger/data.zip"
     data_zip = os.path.join(path, "data.zip")
     urllib.request.urlretrieve(url, data_zip)
     

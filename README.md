@@ -143,7 +143,7 @@ sentence_list = [
 
 word_sentence_list = ws(
     sentence_list,
-    # sentence_segmentation=True, # To consider delimiters
+    # sentence_segmentation = True, # To consider delimiters
     # segment_delimiter_set = {",", "。", ":", "?", "!", ";"}), # This is the defualt set of delimiters
     # recommend_dictionary = dictionary1, # words in this dictionary are encouraged
     # coerce_dictionary = dictionary2, # words in this dictionary are forced
