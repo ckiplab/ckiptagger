@@ -1,6 +1,20 @@
 # CkipTagger
 Also: [中文 README](https://github.com/ckiplab/ckiptagger/wiki/Chinese-README)
 
+## Quickstart
++ Download script:
+    ```python
+    import os
+    from ckiptagger import data_utils
+
+    data_dir = './ckip_data'
+    data_subdir = os.path.join('./ckip_data', 'data')
+    if not os.path.exists(data_subdir):
+        os.makedirs(data_dir, exist_ok=True)
+        data_utils.download_data_gdown(data_dir)
+        os.remove(os.path.join(data_dir, 'data.zip'))
+    ```
+
 #### GitHub
 
 https://github.com/ckiplab/ckiptagger
