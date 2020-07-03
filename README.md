@@ -225,7 +225,7 @@ for i, sentence in enumerate(sentence_list):
 
 Please see:
 
-Peng-Hsuan Li, Tsu-Jui Fu, and Wei-Yun Ma. 2019. [Remedying BiLSTM-CNN Deficiency in Modeling Cross-Context for NER](https://arxiv.org/abs/1908.11046). arXiv preprint arXiv:1908.11046 (To appear in AAAI 2020).
+Peng-Hsuan Li, Tsu-Jui Fu, and Wei-Yun Ma. 2020. Why Attention? Analyze BiLSTM Deficiency and Its Remedies in the Case of NER. In Proceedings of the Thirty-Third AAAI Conference on Artificial Intelligence ([AAAI](https://aaai.org/ojs/index.php/AAAI/article/view/6338)/[arXiv](https://arxiv.org/abs/1908.11046)).
 
 ## LICENSE
 
