@@ -96,7 +96,7 @@ data_utils.download_data_gdown("./") # gdrive-ckip
 ```
 - ./data/model_ner/pos_list.txt -> POS tag list, see [Wiki](https://github.com/ckiplab/ckiptagger/wiki/POS-Tags) / [Technical Report no. 93-05](http://ckip.iis.sinica.edu.tw/CKIP/tr/9305_2013%20revision.pdf)
 - ./data/model_ner/label_list.txt -> Entity type list, see [Wiki](https://github.com/ckiplab/ckiptagger/wiki/Entity-Types) / [OntoNotes Release 5.0](https://catalog.ldc.upenn.edu/docs/LDC2013T19/OntoNotes-Release-5.0.pdf)
-- ./data/embedding_* -> character/word embeddings
+- ./data/embedding_* -> character/word embeddings, see [Wiki](https://github.com/ckiplab/ckiptagger/wiki/Corpora)
 
 ### 2. Load model
 ```python
