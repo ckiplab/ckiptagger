@@ -4,6 +4,7 @@ Also: [中文 README](https://github.com/ckiplab/ckiptagger/wiki/Chinese-README)
 ## Quickstart
 + Download script:
     ```python
+    # !pip install ckiptagger tensorflow gdown
     import os
     from ckiptagger import data_utils
 
