@@ -50,9 +50,9 @@ class WS:
             
         with tf.Graph().as_default():
             model = model_ws.Model(config)
-            model.sess = tf.Session()
-            model.sess.run(tf.global_variables_initializer())
-            saver = tf.train.Saver()
+            model.sess = tf.compat.v1.Session()
+            model.sess.run(tf.compat.v1.global_variables_initializer())
+            saver = tf.compat.v1.train.Saver()
             saver.restore(model.sess, os.path.join(data_dir, "model_ws", config.name))
             
         if disable_cuda and env_backup:
@@ -170,9 +170,9 @@ class POS:
             
         with tf.Graph().as_default():
             model = model_pos.Model(config)
-            model.sess = tf.Session()
-            model.sess.run(tf.global_variables_initializer())
-            saver = tf.train.Saver()
+            model.sess = tf.compat.v1.Session()
+            model.sess.run(tf.compat.v1.global_variables_initializer())
+            saver = tf.compat.v1.train.Saver()
             saver.restore(model.sess, os.path.join(data_dir, "model_pos", config.name))
             
         if disable_cuda and env_backup:
@@ -272,9 +272,9 @@ class NER:
             
         with tf.Graph().as_default():
             model = model_ner.Model(config)
-            model.sess = tf.Session()
-            model.sess.run(tf.global_variables_initializer())
-            saver = tf.train.Saver()
+            model.sess = tf.compat.v1.Session()
+            model.sess.run(tf.compat.v1.global_variables_initializer())
+            saver = tf.compat.v1.train.Saver()
             saver.restore(model.sess, os.path.join(data_dir, "model_ner", config.name))
             
         if disable_cuda and env_backup:

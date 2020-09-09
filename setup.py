@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf8") as fh:
     
 setuptools.setup(
     name = "ckiptagger",
-    version = "0.1.1",
+    version = "0.2.1",
     author = "Peng-Hsuan Li",
     author_email = "jacobvsdanniel@gmail.com",
     description = "Neural implementation of CKIP WS, POS, NER tools",
@@ -16,8 +16,8 @@ setuptools.setup(
     packages = ["ckiptagger"],
     package_dir = {"ckiptagger": "src"},
     extras_require = {
-        "tf": ["tensorflow>=1.13.1,<2"],
-        "tfgpu": ["tensorflow-gpu>=1.13.1,<2"],
+        "tf": ["tensorflow>=1.13.1"],
+        "tfgpu": ["tensorflow-gpu>=1.13.1"],
         "gdown": ["gdown"],
     },
     license = "GPLv3",

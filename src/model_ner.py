@@ -38,7 +38,7 @@ class Config:
 class Cross_BiLSTM:
     def __init__(self, name="cross-bilstm", input_d=300, hidden_d=100, layers=2):
         self.name = name
-        self.kr = tf.placeholder(tf.float32, [])
+        self.kr = tf.compat.v1.placeholder(tf.float32, [])
         
         self.f_cell_list = []
         self.b_cell_list = []
@@ -54,8 +54,8 @@ class Cross_BiLSTM:
         return
         
     def create_cell(self, input_d, hidden_d, is_top_cell, name):
-        cell = tf.nn.rnn_cell.LSTMCell(hidden_d, name=name)
-        cell = tf.nn.rnn_cell.DropoutWrapper(
+        cell = tf.compat.v1.nn.rnn_cell.LSTMCell(hidden_d, name=name)
+        cell = tf.compat.v1.nn.rnn_cell.DropoutWrapper(
             cell,
             input_keep_prob = self.kr,
             state_keep_prob = self.kr,
@@ -78,14 +78,14 @@ class Cross_BiLSTM:
         H = X
         S_fw = []
         S_bw = []
-        with tf.variable_scope(self.name):
+        with tf.compat.v1.variable_scope(self.name):
             for f_cell, b_cell in zip(self.f_cell_list, self.b_cell_list):
                 # top_output: [2, batch, length, hidden_d]
                 #    axis0: forward/backward
                 # last_state: [2, 2, batch, hidden_d]
                 #    axis0: forward/backward
                 #    axis1: LSTM c/h
-                top_output, last_state = tf.nn.bidirectional_dynamic_rnn(
+                top_output, last_state = tf.compat.v1.nn.bidirectional_dynamic_rnn(
                     f_cell,
                     b_cell,
                     H,
@@ -105,13 +105,13 @@ class Att:
         self.VP_list = []
         for i in range(heads):
             self.QP_list.append(
-                tf.layers.Dense(dk_head, use_bias=False, name=f"{name}/QP_{i}")
+                tf.compat.v1.layers.Dense(dk_head, use_bias=False, name=f"{name}/QP_{i}")
             )
             self.KP_list.append(
-                tf.layers.Dense(dk_head, use_bias=False, name=f"{name}/KP_{i}")
+                tf.compat.v1.layers.Dense(dk_head, use_bias=False, name=f"{name}/KP_{i}")
             )
             self.VP_list.append(
-                tf.layers.Dense(dv_head, use_bias=False, name=f"{name}/VP_{i}")
+                tf.compat.v1.layers.Dense(dv_head, use_bias=False, name=f"{name}/VP_{i}")
             )
         return
         
@@ -124,7 +124,7 @@ class Att:
         C: [batch, q, dv]
         """
         # Attention score
-        dk = tf.cast(tf.shape(K)[2], tf.float32)
+        dk = tf.cast(tf.shape(input=K)[2], tf.float32)
         score = tf.matmul(Q, K, transpose_b=True) # [batch, q, m]
         score = score/tf.sqrt(dk)                 # [batch, q, m]
         
@@ -132,9 +132,9 @@ class Att:
         if L is not None:
             mask = tf.sequence_mask(L)                                     # [batch, m]
             mask = tf.expand_dims(mask, 1)                                 # [batch, 1, m]
-            mask = tf.tile(mask, [1, tf.shape(score)[1], 1])               # [batch, q, m]
+            mask = tf.tile(mask, [1, tf.shape(input=score)[1], 1])               # [batch, q, m]
             worst_score = tf.ones_like(score) * tf.constant(float("-inf")) # [batch, q, m]
-            score = tf.where(mask, score, worst_score)                     # [batch, q, m]
+            score = tf.compat.v1.where(mask, score, worst_score)                     # [batch, q, m]
             
         # Context vector
         alpha = tf.nn.softmax(score, 2) # [batch, q, m]
@@ -148,9 +148,9 @@ class Att:
         V: [batch, m, dv]
         C: [batch, q, heads * dv_head]
         """
-        batch = tf.shape(Q)[0]
-        q = tf.shape(Q)[1]
-        m = tf.shape(K)[1]
+        batch = tf.shape(input=Q)[0]
+        q = tf.shape(input=Q)[1]
+        m = tf.shape(input=K)[1]
         
         C_list = []
         for i in range(self.heads):
@@ -184,42 +184,42 @@ class Model:
         
     def create_embedding(self):
         """Create trainable unknown vectors."""
-        with tf.variable_scope(self.name, initializer=tf.random_normal_initializer(stddev=0.1)):
-            self.unknown_c_v = tf.get_variable("unknown_c_v", [1, self.c_embedding_d+self.c_feature_d])
-            self.unknown_w_v = tf.get_variable("unknown_w_v", [1, self.w_embedding_d+self.w_feature_d])
+        with tf.compat.v1.variable_scope(self.name, initializer=tf.compat.v1.random_normal_initializer(stddev=0.1)):
+            self.unknown_c_v = tf.compat.v1.get_variable("unknown_c_v", [1, self.c_embedding_d+self.c_feature_d])
+            self.unknown_w_v = tf.compat.v1.get_variable("unknown_w_v", [1, self.w_embedding_d+self.w_feature_d])
         return
         
     def create_encoder(self):
         """Create an Att-BiLSTM encoder."""
         
         # Input sequence                     batch, s_l_max
-        self.s_l = tf.placeholder(  tf.int32, [None])
-        self.c_k = tf.placeholder(  tf.int32, [None, None])
-        self.c_v = tf.placeholder(tf.float32, [None, None, self.c_embedding_d+self.c_feature_d])
-        self.w_k = tf.placeholder(  tf.int32, [None, None])
-        self.w_v = tf.placeholder(tf.float32, [None, None, self.w_embedding_d+self.w_feature_d])
+        self.s_l = tf.compat.v1.placeholder(  tf.int32, [None])
+        self.c_k = tf.compat.v1.placeholder(  tf.int32, [None, None])
+        self.c_v = tf.compat.v1.placeholder(tf.float32, [None, None, self.c_embedding_d+self.c_feature_d])
+        self.w_k = tf.compat.v1.placeholder(  tf.int32, [None, None])
+        self.w_v = tf.compat.v1.placeholder(tf.float32, [None, None, self.w_embedding_d+self.w_feature_d])
         
-        batch  = tf.shape(self.c_v)[0]
-        s_l_max = tf.shape(self.c_v)[1]
+        batch  = tf.shape(input=self.c_v)[0]
+        s_l_max = tf.shape(input=self.c_v)[1]
         
         # Character
         c_known     = tf.equal(tf.reshape(self.c_k, [batch*s_l_max]), 1)                         # [batch*s_l_max]
         c_known_v   = tf.reshape(self.c_v, [batch*s_l_max, self.c_embedding_d+self.c_feature_d]) # [batch*s_l_max, c_embedding_d+c_feature_d]
         c_unknown_v = tf.tile(self.unknown_c_v, [batch*s_l_max, 1])                              # [batch*s_l_max, c_embedding_d+c_feature_d]
-        c_v         = tf.where(c_known, c_known_v, c_unknown_v)                                  # [batch*s_l_max, c_embedding_d+c_feature_d]
+        c_v         = tf.compat.v1.where(c_known, c_known_v, c_unknown_v)                                  # [batch*s_l_max, c_embedding_d+c_feature_d]
         c_v         = tf.reshape(c_v, [batch, s_l_max, self.c_embedding_d+self.c_feature_d])     # [batch, s_l_max, c_embedding_d+c_feature_d]
         
         # Word
         w_known     = tf.equal(tf.reshape(self.w_k, [batch*s_l_max]), 1)                         # [batch*s_l_max]
         w_known_v   = tf.reshape(self.w_v, [batch*s_l_max, self.w_embedding_d+self.w_feature_d]) # [batch*s_l_max, w_embedding_d+w_feature_d]
         w_unknown_v = tf.tile(self.unknown_w_v, [batch*s_l_max, 1])                              # [batch*s_l_max, w_embedding_d+w_feature_d]
-        w_v         = tf.where(w_known, w_known_v, w_unknown_v)                                  # [batch*s_l_max, w_embedding_d+w_feature_d]
+        w_v         = tf.compat.v1.where(w_known, w_known_v, w_unknown_v)                                  # [batch*s_l_max, w_embedding_d+w_feature_d]
         w_v         = tf.reshape(w_v, [batch, s_l_max, self.w_embedding_d+self.w_feature_d])     # [batch, s_l_max, w_embedding_d+w_feature_d]
         
         cw_v         = tf.concat([c_v, w_v], axis=2) # [batch, s_l_max, c_embedding_d+c_feature_d+w_embedding_d+w_feature_d]
         
         # BiLSTM
-        with tf.variable_scope(self.name):
+        with tf.compat.v1.variable_scope(self.name):
             self.bilstm = Cross_BiLSTM(
                 input_d = self.c_embedding_d + self.c_feature_d + self.w_embedding_d + self.w_feature_d,
                 hidden_d = self.hidden_d,
@@ -231,7 +231,7 @@ class Model:
         if self.attention_heads == 0:
             self.cw_a = cw_h
         else:
-            with tf.variable_scope(self.name):
+            with tf.compat.v1.variable_scope(self.name):
                 head_d = int(self.w_hidden_d * 2 / self.attention_heads)
                 att = Att(
                     heads = self.attention_heads,
@@ -247,30 +247,30 @@ class Model:
         
         # Output
         # self.logits are not actually logits, because a tf.nn.log_softmax() is omitted
-        output_layer = tf.layers.Dense(
+        output_layer = tf.compat.v1.layers.Dense(
             self.output_d,
             use_bias = True,
             name = "output_layer",
         )
-        with tf.variable_scope(self.name):
+        with tf.compat.v1.variable_scope(self.name):
             self.logits = output_layer(self.cw_a) # [batch, s_l_max, output_d]
             
         # Loss
-        self.o_i    = tf.placeholder(  tf.int32, [None, None]) # [batch, s_l_max]
-        self.o_mask = tf.placeholder(tf.float32, [None, None]) # [batch, s_l_max]
+        self.o_i    = tf.compat.v1.placeholder(  tf.int32, [None, None]) # [batch, s_l_max]
+        self.o_mask = tf.compat.v1.placeholder(tf.float32, [None, None]) # [batch, s_l_max]
         
         cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(
             labels = self.o_i,
             logits = self.logits,
         )
-        self.loss = tf.reduce_sum(cross_entropy * self.o_mask) / tf.reduce_sum(self.o_mask)
+        self.loss = tf.reduce_sum(input_tensor=cross_entropy * self.o_mask) / tf.reduce_sum(input_tensor=self.o_mask)
         
         # Optimization
-        optimizer = tf.contrib.opt.NadamOptimizer(learning_rate=self.learning_rate)
+        optimizer = tf.compat.v1.train.AdamOptimizer(learning_rate=self.learning_rate)
         gv_list = optimizer.compute_gradients(self.loss)
         g_list, v_list = zip(*gv_list)
         g_list = [
-            tf.convert_to_tensor(g) if isinstance(g, tf.IndexedSlices) else g
+            tf.convert_to_tensor(value=g) if isinstance(g, tf.IndexedSlices) else g
             for g in g_list
         ]
         if self.max_gradient_norm > 0:
@@ -442,15 +442,14 @@ class Model:
 def main():
     config = Config()
     model = Model(config)
-    tf_config = tf.ConfigProto()
+    tf_config = tf.compat.v1.ConfigProto()
     tf_config.gpu_options.per_process_gpu_memory_fraction = 0.45
-    with tf.Session(config=tf_config) as sess:
-        sess.run(tf.global_variables_initializer())
-        for v in tf.trainable_variables():
+    with tf.compat.v1.Session(config=tf_config) as sess:
+        sess.run(tf.compat.v1.global_variables_initializer())
+        for v in tf.compat.v1.trainable_variables():
             print(v)
     return
     
 if __name__ == "__main__":
     main()
     sys.exit()
-    
