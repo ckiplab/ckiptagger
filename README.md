@@ -1,17 +1,13 @@
 # CkipTagger
 Also: [中文 README](https://github.com/ckiplab/ckiptagger/wiki/Chinese-README)
 
-#### GitHub
-
-https://github.com/ckiplab/ckiptagger
+#### [GitHub](https://github.com/ckiplab/ckiptagger)
 
 [![GitHub release](https://img.shields.io/github/v/release/ckiplab/ckiptagger.svg?maxAge=3600)](https://github.com/ckiplab/ckiptagger/releases)
 [![GitHub release date](https://img.shields.io/github/release-date/ckiplab/ckiptagger.svg?maxAge=3600)](https://github.com/ckiplab/ckiptagger/releases)
 [![GitHub issues](https://img.shields.io/github/issues/ckiplab/ckiptagger.svg?maxAge=3600)](https://github.com/ckiplab/ckiptagger/issues)
 
-#### PyPI
-
-https://pypi.org/project/ckiptagger
+#### [PyPI](https://pypi.org/project/ckiptagger)
 
 [![PyPI version](https://img.shields.io/pypi/v/ckiptagger.svg?maxAge=3600)](https://pypi.org/project/ckiptagger)
 [![PyPI license](https://img.shields.io/pypi/l/ckiptagger.svg?maxAge=3600)](https://github.com/ckiplab/ckiptagger/blob/master/LICENSE)
@@ -19,7 +15,10 @@ https://pypi.org/project/ckiptagger
 
 #### Documentation
 
-https://github.com/ckiplab/ckiptagger/wiki
+- [wiki](https://github.com/ckiplab/ckiptagger/wiki)
+- [slides](https://drive.google.com/file/d/1N6OuN-JBTyM4C9Qb80YUKofHYMYW7O9R/view?usp=sharing)
+- [colab-1](https://colab.research.google.com/drive/1ZnB46vPPiClDxEulZ27BD1WEsNohFYey)
+- [colab-2](https://colab.research.google.com/drive/16bOoAP3wi0g4FaFNJbhcLCVCfkVvb9EQ#scrollTo=ooa11tl9KeQ9)
 
 #### Author / Maintainers
 
