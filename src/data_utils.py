@@ -14,7 +14,6 @@ def download_data_gdown(path):
         zip_ref.extractall(path)
     return
     
-downlaod_data_gdown = download_data_gdown
 download_data = download_data_gdown
 
 def download_data_url(path):
