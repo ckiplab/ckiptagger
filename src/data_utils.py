@@ -14,8 +14,9 @@ def download_data_gdown(path):
         zip_ref.extractall(path)
     return
     
-downlaod_data_gdown = download_data_gdown
+
 download_data = download_data_gdown
+
 
 def download_data_url(path):
     import urllib.request
@@ -27,13 +28,15 @@ def download_data_url(path):
     with zipfile.ZipFile(data_zip, "r") as zip_ref:
         zip_ref.extractall(path)
     return
-    
+
+
 def main():
     download_data("./m1")
     download_data_gdown("./m2")
     download_data_url("./m3")
     return
-    
+
+
 if __name__ == "__main__":
     main()    
     sys.exit()

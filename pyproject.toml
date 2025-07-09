@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools >= 80.9.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ckiptagger"
+version = "0.3.0"
+authors = [
+  { name="Li Peng-Hsuan", email="jacobvsdanniel@gmail.com" },
+]
+description = "Neural implementation of CKIP WS, POS, NER tools"
+readme = "README.md"
+requires-python = ">=3.6"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "GPL-3.0-only"
+license-files = ["LICENSE"]
+dependencies = [
+  "tf_keras",
+  "gdown",
+]
+
+[project.urls]
+Homepage = "https://github.com/ckiplab/ckiptagger"

@@ -53,25 +53,17 @@ ASBC 4.0 Test Split (50,000 sentences)
 
 ## Installation
 
-tl;dr.
 ```
-pip install -U ckiptagger[tf,gdown]
+python3 -m pip install -U pip
+python3 -m pip install ckiptagger
 ```
 
 CkipTagger is a Python library hosted on PyPI. Requirements:
 - python>=3.6
-- tensorflow>=1.13.1 / tensorflow-gpu>=1.13.1 (one of them)
-- gdown (optional, for downloading model files from google drive)
 
-(Minimum installation) If you have set up tensorflow, and would like to download model files by yourself.
-```
-pip install -U ckiptagger
-```
-
-(Complete installation) If you have just set up a clean virtual environment, and want everything, including GPU support.
-```
-pip install -U ckiptagger[tfgpu,gdown]
-```
+After installation, the following packages (and their dependencies) are automatically installed
+- tf-keras (Keras and TensorFlow, backend for CkipTagger)
+- gdown (for downloading model files from Google Drive)
 
 ## Usage
 
@@ -100,9 +92,18 @@ data_utils.download_data_gdown("./") # gdrive-ckip
 ### 2. Load model
 ```python
 # To use GPU:
-#    1. Install tensorflow-gpu (see Installation)
-#    2. Set CUDA_VISIBLE_DEVICES environment variable, e.g. os.environ["CUDA_VISIBLE_DEVICES"] = "0"
-#    3. Set disable_cuda=False, e.g. ws = WS("./data", disable_cuda=False)
+#    Step 1. install CUDA (Nvidia GPU) support for TensorFlow (CkipTagger backend)
+#       (command line)
+#       python -m pip install tensorflow[and-cuda]
+#    Step 2. Set CUDA_VISIBLE_DEVICES environment variable
+#       (python script)
+#       os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+#    Step 3. Set disable_cuda=False
+#       (python script)
+#       ws = WS("./data", disable_cuda=False)
+#       pos = POS("./data", disable_cuda=False)
+#       ner = NER("./data", disable_cuda=False)
+
 # To use CPU:
 ws = WS("./data")
 pos = POS("./data")
@@ -142,10 +143,10 @@ sentence_list = [
 
 word_sentence_list = ws(
     sentence_list,
-    # sentence_segmentation = True, # To consider delimiters
-    # segment_delimiter_set = {",", "。", ":", "?", "!", ";"}), # This is the defualt set of delimiters
-    # recommend_dictionary = dictionary1, # words in this dictionary are encouraged
-    # coerce_dictionary = dictionary2, # words in this dictionary are forced
+    # sentence_segmentation=True, # To consider delimiters
+    # segment_delimiter_set={",", "。", ":", "?", "!", ";"}), # This is the defualt set of delimiters
+    # recommend_dictionary=dictionary1, # words in this dictionary are encouraged
+    # coerce_dictionary=dictionary2, # words in this dictionary are forced
 )
 
 pos_sentence_list = pos(word_sentence_list)
@@ -168,7 +169,7 @@ def print_word_pos_sentence(word_sentence, pos_sentence):
         print(f"{word}({pos})", end="\u3000")
     print()
     return
-    
+
 for i, sentence in enumerate(sentence_list):
     print()
     print(f"'{sentence}'")
@@ -232,3 +233,5 @@ Copyright (c) 2019 [CKIP Lab](https://ckip.iis.sinica.edu.tw/).
 
 This Work is licensed under the GNU General Public License v3.0 without any warranties. The license text in full can be getting access at the file named COPYING-GPL-3.0. Any person obtaining a copy of this Work and associated documentation files is granted the rights to use, copy, modify, merge, publish, and distribute the Work for any purpose. However if any work is based upon this Work and hence constitutes a Derivative Work, the GPL-3.0 license requires distributions of the Work and the Derivative Work to remain under the same license or a similar license with the Source Code provision obligation.
 
+For commercial license without the Source Code conveying liability, please contact <ckiptagger_cm [at] iis.sinica.edu.tw><br />
+For other questions, please contact <ckiptagger [at] iis.sinica.edu.tw>

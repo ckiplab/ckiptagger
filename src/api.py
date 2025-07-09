@@ -1,10 +1,13 @@
-import re
 import os
+import re
 import sys
 import unicodedata
 
+os.environ["TF_USE_LEGACY_KERAS"] = "1"
+
 import numpy as np
 import tensorflow as tf
+
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
 from ckiptagger import model_ws
@@ -12,6 +15,7 @@ from ckiptagger import model_pos
 from ckiptagger import model_ner
 
 _whitespace_pattern = re.compile("[\s]+")
+
 
 def construct_dictionary(word_to_weight):
     length_word_weight = {}
@@ -30,7 +34,8 @@ def construct_dictionary(word_to_weight):
     length_word_weight = sorted(length_word_weight.items())
     
     return length_word_weight
-    
+
+
 class WS:
     def __init__(self, data_dir, disable_cuda=True):
         config = model_ws.Config()
@@ -64,21 +69,21 @@ class WS:
     def __del__(self):
         self.model.sess.close()
         return
-        
+
     def __call__(
             self,
             sentence_list,
-            
+
             recommend_dictionary = {},
             coerce_dictionary = {},
-            
+
             sentence_segmentation = False,
             segment_delimiter_set = {",", "。", ":", "?", "!", ";"},
-            
+
             character_normalization = True,
             batch_sentences = 2048,
             batch_characters = 16384,
-        ):
+    ):
         
         # Character normalization
         if character_normalization:
@@ -148,7 +153,8 @@ class WS:
             word_sentence_list.append(word_sentence)
             
         return word_sentence_list
-        
+
+
 class POS:
     def __init__(self, data_dir, disable_cuda=True):
         config = model_pos.Config()
@@ -195,7 +201,7 @@ class POS:
             character_normalization = True,
             batch_sentences = 2048,
             batch_characters = 16384,
-        ):
+    ):
         
         # Character normalization
         if character_normalization:
@@ -248,7 +254,8 @@ class POS:
         pos_sentence_list.append(pos_sentence)
         
         return pos_sentence_list
-        
+
+
 class NER:
     def __init__(self, data_dir, disable_cuda=True):
         config = model_ner.Config()
@@ -295,7 +302,7 @@ class NER:
             character_normalization = True,
             batch_sentences = 2048,
             batch_characters = 16384,
-        ):
+    ):
         
         # Character normalization
         if character_normalization:
@@ -348,7 +355,8 @@ class NER:
             entity_sentence_list.append(entity_sentence)
             
         return entity_sentence_list
-        
+
+
 def _load_embedding(embedding_dir):
     token_file = os.path.join(embedding_dir, "token_list.npy")
     token_list = np.load(token_file)
@@ -359,7 +367,8 @@ def _load_embedding(embedding_dir):
     token_to_vector = dict(zip(token_list, vector_list))
     d = vector_list.shape[1]
     return token_to_vector, d
-    
+
+
 def _read_pos_list(label_list_file):
     with open(label_list_file, "r") as f:
         line_list = f.read().splitlines()
@@ -371,7 +380,8 @@ def _read_pos_list(label_list_file):
     label_to_index = {label: index for index, label in enumerate(label_list)}
     
     return label_list, label_to_index
-    
+
+
 def _read_entity_type_list(label_list_file):
     with open(label_list_file, "r") as f:
         line_list = f.read().splitlines()
@@ -386,7 +396,8 @@ def _read_entity_type_list(label_list_file):
     label_to_index = {label: index for index, label in enumerate(label_list)}
     
     return label_list, label_to_index
-    
+
+
 def _normalize_sentence(raw_sentence):
     normal_string_list = []
     normal_to_raw_index = []
@@ -401,7 +412,8 @@ def _normalize_sentence(raw_sentence):
             
     normal_sentence = "".join(normal_string_list)
     return normal_sentence, normal_to_raw_index
-    
+
+
 def _segment_sentence(sentence, delimiter_set):
     if not sentence:
         return [""]
@@ -416,7 +428,8 @@ def _segment_sentence(sentence, delimiter_set):
     if segment:
         segment_list.append(segment)
     return segment_list
-    
+
+
 def _segment_word_sentence(sentence, delimiter_set):
     if not sentence:
         return [[]]
@@ -431,7 +444,8 @@ def _segment_word_sentence(sentence, delimiter_set):
     if segment:
         segment_list.append(segment)
     return segment_list
-    
+
+
 def _get_ws_batch_list(sentence_list, batch_sentences, batch_characters):
     index_sentence_list = sorted(
         enumerate(sentence_list),
@@ -458,7 +472,8 @@ def _get_ws_batch_list(sentence_list, batch_sentences, batch_characters):
         batch_list.append(batch)
         
     return batch_list
-    
+
+
 def _get_pos_batch_list(sentence_list, batch_sentences, batch_characters):
     index_sentence_list = sorted(
         enumerate(sentence_list),
@@ -485,7 +500,8 @@ def _get_pos_batch_list(sentence_list, batch_sentences, batch_characters):
         batch_list.append(batch)
         
     return batch_list
-    
+
+
 def _get_ner_batch_list(word_sentence_list, pos_sentence_list, batch_sentences, batch_characters):
     label_sentence_list = [
         [
@@ -521,7 +537,8 @@ def _get_ner_batch_list(word_sentence_list, pos_sentence_list, batch_sentences, 
         batch_list.append(batch)
         
     return batch_list
-    
+
+
 def _get_word_sentence_from_seq_sentence(sentence, seq_sentence):
     assert len(sentence) == len(seq_sentence)
     if not sentence:
@@ -537,7 +554,8 @@ def _get_word_sentence_from_seq_sentence(sentence, seq_sentence):
     word_sentence.append(word)
     
     return word_sentence
-    
+
+
 def _get_forced_chunk_set(sentence, length_word_weight):
     
     chunk_to_weight = {}
@@ -564,7 +582,8 @@ def _get_forced_chunk_set(sentence, length_word_weight):
             empty_sentence[i] = False
             
     return chunk_set
-    
+
+
 def _soft_force_seq_sentence(forced_chunk_set, seq_sentence):
     for l, r in sorted(forced_chunk_set):
         if seq_sentence[l] != "B": continue
@@ -572,7 +591,8 @@ def _soft_force_seq_sentence(forced_chunk_set, seq_sentence):
         for i in range(l+1,r):
             seq_sentence[i] = "I"
     return
-    
+
+
 def _hard_force_seq_sentence(forced_chunk_set, seq_sentence):
     for l, r in sorted(forced_chunk_set):
         seq_sentence[l] = "B"
@@ -581,7 +601,8 @@ def _hard_force_seq_sentence(forced_chunk_set, seq_sentence):
         if r < len(seq_sentence):
             seq_sentence[r] = "B"
     return
-    
+
+
 def _run_word_segmentation_with_dictionary(word_sentence, recommend_dictionary, coerce_dictionary):
     sentence = "".join(word_sentence)
     seq_sentence = []
@@ -597,13 +618,15 @@ def _run_word_segmentation_with_dictionary(word_sentence, recommend_dictionary, 
     
     word_sentence = _get_word_sentence_from_seq_sentence(sentence, seq_sentence)
     return word_sentence
-    
+
+
 def _force_whitespace_tagging(word_sentence, pos_sentence):
     for i, word in enumerate(word_sentence):
         if _whitespace_pattern.fullmatch(word) is not None:
             pos_sentence[i] = "WHITESPACE"
     return
-    
+
+
 def _get_entity_set(word_sentence, label_sentence):
     sentence = "".join(word_sentence)
     assert len(sentence) == len(label_sentence)
@@ -629,10 +652,12 @@ def _get_entity_set(word_sentence, label_sentence):
                     )
                     l = None
     return entity_set
-    
+
+
 def main():
     return
-    
+
+
 if __name__ == "__main__":
     main()
     sys.exit()
