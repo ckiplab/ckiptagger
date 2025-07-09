@@ -54,8 +54,8 @@ ASBC 4.0 Test Split (50,000 sentences)
 ## Installation
 
 ```
-python3 -m pip install -U pip
-python3 -m pip install ckiptagger
+python -m pip install -U pip
+python -m pip install ckiptagger
 ```
 
 CkipTagger is a Python library hosted on PyPI. Requirements:
